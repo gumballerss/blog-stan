@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ app.request.basepath }}/../css/style.css">
+    <title>Blog - {% block title %}{% endblock%}</title>
+
+    </head>
+    <body>
+        <header>
+            <nav>
+
+                <ul>
+                    
+                        <a href="{{ app.url_generator.generate('home') }}"><img src="https://scontent-b-cdg.xx.fbcdn.net/hphotos-prn2/t1.0-9/10155481_541722432610851_3842178031483815553_n.jpg" width="300" height="150"</a>
+                    
+                    {% if admin == 1 %}
+                    <li>
+                        <a class="connect1" href="{{ app.url_generator.generate('getAdminArticle') }}">Admin création article</a>
+                    </li>
+                    <li>
+                        <a class="connect1" href="{{ app.url_generator.generate('getAdminTags') }}">Admin création tag</a>
+                    </li>
+
+
+                    {% endif %}
+                </ul>
+            </nav>
+            <div>
+            {% if user %}
+                    <p>Bienvenue, {{ user.name }}</p>
+                    <a href="{{ app.url_generator.generate('logout') }}">Logout</a>
+            {% else  %}
+                <a class="connect" href="{{ app.url_generator.generate('login') }}">Login</a>
+                <a href="{{ app.url_generator.generate('register') }}">Register</a>
+            {% endif %}
+
+        </div>
+        </header>
+        <div id="content">{% block content %}{% endblock %}</div>
+        <div id="footer">
+        </div>
+    </body>
+</html>
